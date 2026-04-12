@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Servizi – Lorenzo Tognolo, Geometra</title>
+<meta name="description" content="Servizi tecnici professionali: progettazione edilizia, sicurezza cantieri, catasto, certificazione energetica, perizie e amministrazione condominiale.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero-title { font-size: clamp(2.8rem, 5.5vw, 4.5rem); line-height: 1.08; }
+.services-map { position: relative; padding: 60px 0 80px; overflow: hidden; }
+.topo-bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; opacity: 0.12; z-index: 0; }
+.services-map .container { position: relative; z-index: 1; }
+.service-item { display: flex; align-items: baseline; justify-content: center; gap: clamp(20px, 4vw, 60px); padding: 28px 0; flex-wrap: wrap; opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.service-item.visible { opacity: 1; transform: translateY(0); }
+.contour-separator { width: 100%; height: 40px; position: relative; overflow: hidden; }
+.contour-separator svg { width: 100%; height: 100%; }
+.service-link { font-family: var(--font-display); font-size: clamp(1.8rem, 4.5vw, 3.8rem); line-height: 1.15; color: var(--color-text); transition: color 0.3s; position: relative; white-space: nowrap; }
+.service-link:hover { color: var(--color-accent); }
+.service-link::after { content: ''; position: absolute; bottom: 2px; left: 0; width: 0; height: 2px; background: var(--color-accent); transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.service-link:hover::after { width: 100%; }
+.service-num { font-family: var(--font-body); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; color: var(--color-text-secondary); opacity: 0.5; vertical-align: super; margin-right: -8px; }
+.service-detail-intro { padding: 80px 0 40px; text-align: center; }
+.detail-intro-title { font-family: var(--font-display); font-size: clamp(1.6rem, 2.8vw, 2.2rem); line-height: 1.25; max-width: 700px; margin: 0 auto 12px; }
+.detail-intro-desc { font-size: 0.92rem; color: var(--color-text-secondary); max-width: 600px; margin: 0 auto; line-height: 1.7; }
+.service-details { padding: 20px 0 100px; }
+.detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.detail-card { border: 1.5px solid var(--color-card-border); border-radius: 4px; padding: 36px 32px; background: var(--color-white); transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; position: relative; overflow: hidden; }
+.detail-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: var(--color-accent); transform: scaleX(0); transform-origin: left; transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.detail-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.06); border-color: var(--color-accent); }
+.detail-card:hover::before { transform: scaleX(1); }
+.detail-card h3 { font-family: var(--font-body); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 20px; }
+.detail-card ul { list-style: none; margin-bottom: 20px; }
+.detail-card ul li { font-size: 0.88rem; padding: 5px 0 5px 16px; position: relative; }
+.detail-card ul li::before { content: ''; position: absolute; left: 0; top: 13px; width: 5px; height: 5px; border-radius: 50%; background: var(--color-accent); }
+.detail-card .detail-summary { font-size: 0.85rem; color: var(--color-text-secondary); line-height: 1.65; padding-top: 16px; border-top: 1px solid rgba(200, 196, 184, 0.4); }
+@media (max-width: 960px) { .detail-grid { grid-template-columns: 1fr; } }
+@media (max-width: 600px) { .service-item { gap: 12px; padding: 18px 0; } .contour-separator { height: 24px; } }
+</style>
+</head>
+<body>
+
+<header class="site-header" id="header"><div class="header-inner"><a href="index.html" class="site-logo">Lorenzo Tognolo · Geometra</a><nav class="nav-desktop"><a href="index.html">Home</a><a href="servizi.html" class="active">Servizi</a><a href="portafolio.html">Portafolio</a><a href="profilo.html">Profilo</a><a href="contatti.html">Contatti</a><a href="privacy.html">Privacy</a></nav><button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button></div></header>
+<nav class="nav-mobile" id="navMobile"><a href="index.html">Home</a><a href="servizi.html">Servizi</a><a href="portafolio.html">Portafolio</a><a href="profilo.html">Profilo</a><a href="contatti.html">Contatti</a><a href="privacy.html">Privacy</a></nav>
+
+<section class="page-hero"><div class="container">
+  <p class="page-hero-label">Aree operative</p>
+  <h1 class="page-hero-title">Servizi</h1>
+  <p class="page-hero-desc">Lo studio offre servizi tecnici rivolti a privati, imprese e condomini, con assistenza operativa e documentale nelle principali attività edilizie, catastali, energetiche e amministrative.</p>
+</div></section>
+
+<section class="services-map">
+  <svg class="topo-bg" viewBox="0 0 1400 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#3D5A44" stroke-width="1.2"><path d="M-50 120 Q200 80 400 140 Q600 200 800 130 Q1000 60 1200 120 Q1400 180 1500 100"/><path d="M-50 180 Q180 140 380 200 Q580 260 780 190 Q980 120 1180 180 Q1380 240 1500 160"/><path d="M-50 260 Q250 220 420 280 Q600 340 780 270 Q960 200 1140 260 Q1320 320 1500 240"/><path d="M200 350 Q350 300 500 360 Q650 420 800 350 Q950 280 1100 340 Q1250 400 1350 340"/><path d="M250 400 Q380 360 520 410 Q660 460 800 400 Q940 340 1080 390 Q1220 440 1300 390"/><path d="M350 440 Q450 410 560 450 Q670 490 780 440 Q890 390 1000 430 Q1110 470 1200 430"/><path d="M-50 520 Q200 480 400 540 Q600 600 800 530 Q1000 460 1200 520 Q1400 580 1500 500"/><path d="M-50 600 Q250 560 420 620 Q600 680 780 610 Q960 540 1140 600 Q1320 660 1500 580"/><path d="M-50 680 Q200 640 400 700 Q600 760 800 690 Q1000 620 1200 680 Q1400 740 1500 660"/><circle cx="680" cy="390" r="30" stroke-dasharray="4 6"/><circle cx="680" cy="390" r="15" stroke-dasharray="3 5"/></g><g fill="#3D5A44" opacity="0.4"><circle cx="680" cy="390" r="3"/><text x="690" y="388" font-size="9" font-family="DM Sans, sans-serif">▲ 412</text></g></svg>
+  <div class="container">
+    <div class="service-item"><span class="service-num">01</span><a href="#progettazione" class="service-link">Progettazione &amp; Edilizia</a></div>
+    <div class="contour-separator"><svg viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 20 Q150 8 300 22 Q450 36 600 18 Q750 0 900 24 Q1050 38 1200 16" fill="none" stroke="#C8C4B8" stroke-width="1"/><path d="M0 28 Q150 16 300 30 Q450 42 600 26 Q750 8 900 32 Q1050 44 1200 24" fill="none" stroke="#C8C4B8" stroke-width="0.6" opacity="0.5"/></svg></div>
+    <div class="service-item"><span class="service-num">02</span><a href="#sicurezza" class="service-link">Sicurezza Cantieri</a><span style="color:var(--color-border);font-size:clamp(1.2rem,3vw,2.4rem);font-weight:200;opacity:0.4">·</span><span class="service-num">03</span><a href="#catasto" class="service-link">Catasto</a></div>
+    <div class="contour-separator"><svg viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 14 Q200 30 400 12 Q600 -2 800 20 Q1000 36 1200 18" fill="none" stroke="#C8C4B8" stroke-width="1"/><path d="M0 22 Q200 38 400 20 Q600 6 800 28 Q1000 42 1200 26" fill="none" stroke="#C8C4B8" stroke-width="0.6" opacity="0.5"/></svg></div>
+    <div class="service-item"><span class="service-num">04</span><a href="#energetica" class="service-link">Certificazione Energetica</a></div>
+    <div class="contour-separator"><svg viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 24 Q180 10 360 28 Q540 40 720 16 Q900 4 1080 26 Q1200 34 1200 20" fill="none" stroke="#C8C4B8" stroke-width="1"/><path d="M0 32 Q180 18 360 36 Q540 48 720 24 Q900 12 1080 34 Q1200 40 1200 28" fill="none" stroke="#C8C4B8" stroke-width="0.6" opacity="0.5"/></svg></div>
+    <div class="service-item"><span class="service-num">05</span><a href="#perizie" class="service-link">Perizie</a><span style="color:var(--color-border);font-size:clamp(1.2rem,3vw,2.4rem);font-weight:200;opacity:0.4">·</span><span class="service-num">06</span><a href="#condominiale" class="service-link">Amministrazione Condominiale</a></div>
+  </div>
+</section>
+
+<section class="service-detail-intro reveal"><div class="container">
+  <h2 class="detail-intro-title">Attività professionali coordinate in modo chiaro e misurabile.</h2>
+  <p class="detail-intro-desc">Ogni servizio include gestione tecnica, precisione documentale e attenzione alle tempistiche, con un'impostazione orientata alla concretezza.</p>
+</div></section>
+
+<section class="service-details"><div class="container"><div class="detail-grid">
+  <div class="detail-card reveal" id="progettazione"><h3>Progettazione &amp; Edilizia</h3><ul><li>Pratiche edilizie: CILA, SCIA, sanatorie e pratiche comunali</li><li>Direzione lavori</li><li>Rilievi topografici e restituzioni grafiche (DWG)</li><li>Computi metrici estimativi e capitolati</li><li>Contabilità di cantiere</li></ul><p class="detail-summary">Gestione tecnica delle pratiche edilizie e supporto operativo nelle fasi di progettazione, rilievo, direzione e controllo economico dei lavori.</p></div>
+  <div class="detail-card reveal" id="sicurezza"><h3>Sicurezza Cantieri</h3><ul><li>Piano di Sicurezza e Coordinamento (PSC)</li><li>Coordinamento Sicurezza in fase di Progettazione (CSP)</li><li>Coordinamento Sicurezza in fase di Esecuzione (CSE)</li><li>POS</li><li>PIMUS</li><li>Verbali di sopralluogo e checklist di cantiere</li></ul><p class="detail-summary">Attività legate alla sicurezza nei cantieri, con redazione documentale, coordinamento operativo e monitoraggio delle condizioni di lavoro.</p></div>
+  <div class="detail-card reveal" id="catasto"><h3>Catasto &amp; Pratiche Tecniche</h3><ul><li>Pratiche catastali DOCFA</li><li>Variazioni catastali</li><li>RRE — Relazione di Regolarità Edilizia</li></ul><p class="detail-summary">Assistenza per aggiornamenti catastali, regolarità edilizia e documentazione tecnica connessa agli immobili.</p></div>
+  <div class="detail-card reveal" id="energetica"><h3>Certificazione Energetica</h3><ul><li>APE per unità singole</li><li>APE per edifici plurifamiliari / condomini</li></ul><p class="detail-summary">Redazione di attestati di prestazione energetica per immobili residenziali e fabbricati con più unità.</p></div>
+  <div class="detail-card reveal" id="perizie"><h3>Perizie &amp; Valutazioni</h3><ul><li>Perizie estimative immobiliari</li><li>Consulenze tecniche</li><li>Stime del valore di mercato</li></ul><p class="detail-summary">Valutazioni tecniche ed economiche utili per compravendite, verifiche patrimoniali, pratiche e approfondimenti specialistici.</p></div>
+  <div class="detail-card reveal" id="condominiale"><h3>Amministrazione Condominiale</h3><ul><li>Gestione ordinaria condomini</li><li>Bilanci, assemblee e rapporti con PA / fornitori</li><li>Gestione lavori straordinari</li><li>Tabelle millesimali</li><li>Gestione sinistri</li><li>Adempimenti fiscali condominiali</li></ul><p class="detail-summary">Servizi di amministrazione e gestione condominiale con attenzione agli aspetti organizzativi, documentali e fiscali.</p></div>
+</div></div></section>
+
+<section class="cta-band reveal"><div class="container"><div class="cta-band-inner">
+  <div><h2 class="cta-band-title">Richiedi informazioni sui servizi</h2><p class="cta-band-subtitle">Per approfondire un'attività specifica o richiedere un primo contatto, consulta la sezione contatti.</p></div>
+  <a href="contatti.html" class="btn-cta">Vai ai contatti</a>
+</div></div></section>
+
+<footer class="site-footer"><div class="container"><div class="footer-grid"><div><p class="footer-brand">Lorenzo Tognolo · Geometra</p><p class="footer-desc">Servizi tecnici per edilizia, sicurezza, catasto, energia, perizie e amministrazione condominiale.</p></div><div><p class="footer-heading">Navigazione</p><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="servizi.html">Servizi</a></li><li><a href="portafolio.html">Portafolio</a></li><li><a href="profilo.html">Profilo</a></li><li><a href="contatti.html">Contatti</a></li><li><a href="privacy.html">Privacy</a></li></ul></div><div><p class="footer-heading">Contatti</p><p class="footer-contact-item"><span class="footer-contact-label">Telefono:</span> 346.15.56.568</p><p class="footer-contact-item"><span class="footer-contact-label">Email:</span> info@geotognolo.it</p><p class="footer-contact-item"><span class="footer-contact-label">Indirizzo:</span> Via G. Verdi 3, Loano</p></div></div><div class="footer-bottom"><p>&copy; 2026 Lorenzo Tognolo – Geometra Libero Professionista. Tutti i diritti riservati.</p></div></div></footer>
+
+<script src="script.js"></script>
+<script>
+// Servizi-specific: stagger service items and smooth scroll to anchors
+document.querySelectorAll('.service-item').forEach(el => {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  obs.observe(el);
+});
+document.querySelectorAll('.service-link').forEach(link => {
+  link.addEventListener('click', e => {
+    const href = link.getAttribute('href');
+    if (href.startsWith('#')) { e.preventDefault(); const t = document.querySelector(href); if (t) window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth' }); }
+  });
+});
+</script>
+</body>
+</html>
