@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lorenzo Tognolo – Geometra Libero Professionista</title>
+<meta name="description" content="Studio tecnico di geometra a Loano. Dal disegno 2D al render finale: rilievi, pratiche edilizie, modellazione 3D e visualizzazioni realistiche.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* HERO full-width tipo mockup */
+.hero {
+  padding-top: calc(var(--header-height) + 24px);
+  padding-bottom: 40px;
+}
+.hero-banner {
+  position: relative;
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 48px);
+}
+.hero-image-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Texto superpuesto sobre la imagen */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 52%;
+  padding: clamp(32px, 5vw, 72px) clamp(28px, 4.5vw, 64px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 3;
+}
+.hero-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin-bottom: 24px;
+  font-weight: 500;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.2s forwards;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.8vw, 3.4rem);
+  line-height: 1.1;
+  color: var(--color-text);
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.35s forwards;
+}
+.hero-title em {
+  font-style: normal;
+  color: #A07B3F;
+}
+.hero-rule {
+  width: 52px;
+  height: 3px;
+  background: #A07B3F;
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.4s forwards;
+}
+.hero-subtitle {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  max-width: 360px;
+  margin-bottom: 36px;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.5s forwards;
+}
+.hero-ctas {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-start;
+  pointer-events: auto;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.65s forwards;
+}
+.hero-ctas .btn-primary {
+  background: #8A6A3E;
+  color: var(--color-white);
+}
+.hero-ctas .btn-primary:hover {
+  background: #A07B3F;
+}
+.hero-ctas .btn-secondary {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-color: var(--color-text);
+}
+
+/* Flechas decorativas */
+.hero-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(250, 250, 245, 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 2;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.hero-arrow svg {
+  width: 18px; height: 18px;
+  stroke: var(--color-text);
+  fill: none; stroke-width: 1.5;
+}
+.hero-arrow-left { left: 40%; }
+.hero-arrow-right { right: 6%; }
+@media (max-width: 960px) {
+  .hero-arrow-left { left: 4%; }
+}
+
+/* STEPS */
+.steps-section {
+  padding: 48px 0 80px;
+  background: var(--color-bg);
+}
+.steps-grid {
+  display: grid;
+  grid-template-columns: 1fr 48px 1fr 48px 1fr;
+  gap: 16px;
+  align-items: start;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.step-item {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.step-number {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--color-bg-warm);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem; font-weight: 500;
+  color: var(--color-text-secondary);
+  margin-bottom: 20px;
+}
+.step-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--color-text);
+  margin-bottom: 16px;
+  font-weight: 400;
+}
+.step-rule {
+  width: 40px; height: 1.5px;
+  background: #A07B3F;
+  opacity: 0.6;
+  margin-bottom: 28px;
+}
+.step-icon {
+  width: 80px; height: 80px;
+  margin-bottom: 20px;
+}
+.step-desc {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  line-height: 1.65;
+  max-width: 240px;
+}
+.step-arrow {
+  padding-top: 120px;
+  color: var(--color-text-secondary);
+  opacity: 0.4;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+/* METODO */
+.metodo-section {
+  padding: 100px 0;
+  background: var(--color-bg-warm);
+}
+.metodo-intro {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 60px;
+}
+.metodo-eyebrow {
+  font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: #A07B3F; margin-bottom: 16px; font-weight: 500;
+}
+.metodo-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  line-height: 1.2; margin-bottom: 20px;
+}
+.metodo-desc {
+  font-size: 0.95rem; color: var(--color-text-secondary); line-height: 1.75;
+}
+.metodo-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+}
+.metodo-card {
+  background: var(--color-white);
+  border-radius: 4px;
+  padding: 36px 32px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.metodo-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+}
+.metodo-card-icon {
+  width: 36px; height: 36px;
+  color: #A07B3F;
+  margin-bottom: 20px;
+}
+.metodo-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem; margin-bottom: 14px;
+}
+.metodo-card p {
+  font-size: 0.88rem; color: var(--color-text-secondary); line-height: 1.7;
+}
+
+/* CTA FINAL */
+.cta-band-home {
+  background: var(--color-bg-warm);
+  padding: 64px 0 80px;
+}
+.cta-band-home-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 40px;
+  align-items: center;
+}
+.cta-band-home-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 2.6vw, 2rem);
+  line-height: 1.3;
+}
+.cta-band-home-title em {
+  color: #A07B3F; font-style: normal;
+}
+.cta-band-home-desc {
+  font-size: 0.92rem; color: var(--color-text-secondary); line-height: 1.7;
+}
+.cta-band-home .btn-cta {
+  background: #8A6A3E;
+}
+.cta-band-home .btn-cta:hover {
+  background: #A07B3F;
+}
+
+/* Responsive */
+@media (max-width: 1020px) {
+  .hero-overlay {
+    width: 100%;
+    background: linear-gradient(180deg, rgba(250,250,245,0.95) 0%, rgba(250,250,245,0.75) 60%, rgba(250,250,245,0.3) 100%);
+  }
+  .hero-arrow { display: none; }
+  .steps-grid { grid-template-columns: 1fr; gap: 40px; }
+  .step-arrow { display: none; }
+  .metodo-grid { grid-template-columns: 1fr; gap: 16px; }
+  .cta-band-home-inner { grid-template-columns: 1fr; text-align: center; gap: 24px; }
+  .cta-band-home-inner .btn-cta { justify-self: center; }
+}
+@media (max-width: 600px) {
+  .hero { padding-top: calc(var(--header-height) + 16px); }
+  .hero-image-wrap { aspect-ratio: 4 / 3; }
+}
+
+/* Footer */
+.footer-grid {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 48px; padding: 64px 0 48px; align-items: start;
+}
+.footer-col-nav { min-width: 190px; text-align: center; display: flex; justify-content: center; }
+.footer-col-nav .footer-heading { text-align: left; }
+.footer-nav-block { display: inline-flex; flex-direction: column; gap: 0; }
+.footer-nav-block .footer-heading { margin-bottom: 20px; }
+.footer-col-contacts { min-width: 130px; }
+.footer-col-brand .footer-brand {
+  font-size: 0.82rem; font-weight: 400; letter-spacing: 0.04em;
+  margin-bottom: 12px; opacity: 0.9;
+}
+.footer-col-brand .footer-desc {
+  font-size: 0.82rem; line-height: 1.7; opacity: 0.55; max-width: 400px;
+}
+.footer-heading {
+  font-size: 0.65rem; font-weight: 600; letter-spacing: 0.18em;
+  text-transform: uppercase; opacity: 0.9; margin-bottom: 20px;
+}
+.footer-nav-inline {
+  display: flex; flex-direction: column; gap: 10px; align-items: center;
+}
+.footer-nav-row { display: flex; align-items: center; gap: 10px; }
+.footer-nav-inline a {
+  font-size: 0.85rem; opacity: 0.65; transition: opacity 0.2s; text-decoration: none;
+}
+.footer-nav-inline a:hover { opacity: 1; }
+.footer-sep { opacity: 0.3; font-size: 0.75rem; }
+.footer-contacts-top-row { display: flex; gap: 40px; margin-bottom: 20px; }
+.footer-contact-inline { display: flex; flex-direction: column; gap: 4px; }
+.footer-contact-address { margin-top: 0; }
+.footer-contact-label {
+  font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; opacity: 0.45;
+}
+.footer-contact-value { font-size: 0.88rem; opacity: 0.85; }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1); padding: 24px 0;
+}
+.footer-bottom p {
+  font-size: 0.75rem; opacity: 0.4; letter-spacing: 0.04em;
+}
+.site-footer .container {
+  padding-left: clamp(24px, 5vw, 80px);
+  padding-right: clamp(24px, 5vw, 80px);
+  max-width: 1280px; margin: 0 auto;
+}
+@media (max-width: 860px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .footer-col-brand { grid-column: 1 / -1; }
+}
+@media (max-width: 500px) {
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+
+/* Video modal */
+.video-modal {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(26, 26, 24, 0.9);
+  z-index: 1000;
+  align-items: center; justify-content: center;
+  padding: 24px;
+}
+.video-modal.open { display: flex; }
+.video-modal-inner {
+  width: 100%; max-width: 1100px;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: 4px; overflow: hidden;
+  position: relative;
+}
+.video-modal-inner video { width: 100%; height: 100%; object-fit: contain; }
+.video-modal-inner iframe { width: 100%; height: 100%; border: none; }
+.video-modal-close {
+  position: absolute; top: -44px; right: 0;
+  background: none; border: none;
+  color: var(--color-white);
+  font-size: 1.6rem; cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<header class="site-header" id="header"><div class="header-inner">
+  <a href="index.html" class="site-logo">Lorenzo Tognolo · Geometra</a>
+  <nav class="nav-desktop">
+    <a href="index.html" class="active">Home</a>
+    <a href="servizi.html">Servizi</a>
+    <a href="portafolio.html">Portafolio</a>
+    <a href="profilo.html">Profilo</a>
+    <a href="contatti.html">Contatti</a>
+    <a href="privacy.html">Privacy</a>
+  </nav>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</div></header>
+<nav class="nav-mobile" id="navMobile">
+  <a href="index.html">Home</a><a href="servizi.html">Servizi</a><a href="portafolio.html">Portafolio</a>
+  <a href="profilo.html">Profilo</a><a href="contatti.html">Contatti</a><a href="privacy.html">Privacy</a>
+</nav>
+
+<!-- HERO full-width -->
+<section class="hero">
+  <div class="hero-banner">
+    <div class="hero-image-wrap" id="heroImageWrap">
+      
+      <img src="img/portada.png" alt="Dal disegno 2D al render finale — Studio Geotognolo" class="hero-image">
+      
+      <div class="hero-overlay">
+        <p class="hero-label">Studio Tecnico Geometra · Loano</p>
+        <h1 class="hero-title">Dal disegno 2D<br>al <em>render finale</em></h1>
+        <div class="hero-rule"></div>
+        <p class="hero-subtitle">Rilievi, pratiche edilizie, modellazione 3D e visualizzazioni realistiche per dare forma alle tue idee.</p>
+        <div class="hero-ctas">
+          <a href="contatti.html" class="btn-primary">Prenota una consulenza</a>
+          <button class="btn-secondary" id="heroPlayBtn" type="button">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20"/></svg>
+            Guarda un progetto
+          </button>
+        </div>
+      </div>
+      
+      <div class="hero-arrow hero-arrow-left" aria-hidden="true">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </div>
+      <div class="hero-arrow hero-arrow-right" aria-hidden="true">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section class="steps-section reveal">
+  <div class="container">
+    <div class="steps-grid">
+
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <h3 class="step-title">Disegno 2D</h3>
+        <div class="step-rule"></div>
+        <svg class="step-icon" viewBox="0 0 48 48" fill="none" stroke="#3D5A44" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="8" y="6" width="28" height="36" rx="1"/>
+          <line x1="14" y1="14" x2="30" y2="14"/>
+          <line x1="14" y1="14" x2="14" y2="26"/>
+          <line x1="14" y1="26" x2="22" y2="26"/>
+          <line x1="22" y1="26" x2="22" y2="34"/>
+          <line x1="22" y1="34" x2="30" y2="34"/>
+          <line x1="30" y1="14" x2="30" y2="34"/>
+          <line x1="18" y1="18" x2="20" y2="18"/>
+          <line x1="26" y1="30" x2="28" y2="30"/>
+          <circle cx="40" cy="10" r="2.5"/>
+          <line x1="40" y1="12.5" x2="38" y2="16"/>
+          <line x1="40" y1="12.5" x2="42" y2="16"/>
+        </svg>
+        <p class="step-desc">Rilievi e disegni tecnici precisi per comprendere e definire ogni dettaglio del progetto.</p>
+      </div>
+
+      <span class="step-arrow">→</span>
+
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <h3 class="step-title">Modello 3D</h3>
+        <div class="step-rule"></div>
+        <svg class="step-icon" viewBox="0 0 48 48" fill="none" stroke="#3D5A44" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M24 6 L40 14 L40 34 L24 42 L8 34 L8 14 Z"/>
+          <path d="M24 6 L24 26"/>
+          <path d="M8 14 L24 26"/>
+          <path d="M40 14 L24 26"/>
+          <path d="M24 26 L24 42"/>
+          <path d="M16 10 L16 30 L32 38" stroke-dasharray="1.5 1.5" opacity="0.5"/>
+          <path d="M32 10 L32 30 L16 38" stroke-dasharray="1.5 1.5" opacity="0.5"/>
+        </svg>
+        <p class="step-desc">Modellazione tridimensionale per vivere il progetto ancora prima che prenda forma.</p>
+      </div>
+
+      <span class="step-arrow">→</span>
+
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <h3 class="step-title">Render realistico</h3>
+        <div class="step-rule"></div>
+        <svg class="step-icon" viewBox="0 0 48 48" fill="none" stroke="#3D5A44" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="34" cy="14" r="4"/>
+          <line x1="34" y1="6" x2="34" y2="8"/>
+          <line x1="40" y1="8" x2="39" y2="9"/>
+          <line x1="42" y1="14" x2="40" y2="14"/>
+          <line x1="40" y1="20" x2="39" y2="19"/>
+          <line x1="28" y1="8" x2="29" y2="9"/>
+          <path d="M6 36 L16 22 L24 30 L32 20 L42 34 L42 40 L6 40 Z"/>
+          <circle cx="14" cy="28" r="1.5" fill="#3D5A44"/>
+        </svg>
+        <p class="step-desc">Rendering fotorealistici per comunicare con chiarezza ogni spazio e atmosfera.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- METODO -->
+<section class="metodo-section reveal">
+  <div class="container">
+    <div class="metodo-intro">
+      <p class="metodo-eyebrow">Un metodo chiaro</p>
+      <h2 class="metodo-title">Competenza, metodo, risultati.</h2>
+      <p class="metodo-desc">Ogni progetto è seguito con attenzione in tutte le fasi, con un unico obiettivo: offrirti soluzioni concrete, sicure e su misura.</p>
+    </div>
+
+    <div class="metodo-grid">
+      <div class="metodo-card">
+        <svg class="metodo-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="2"/>
+          <path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+        </svg>
+        <h3>Precisione tecnica</h3>
+        <p>Documentazione accurata e conforme alle normative vigenti, per garantirti sicurezza e tranquillità in ogni pratica.</p>
+      </div>
+
+      <div class="metodo-card">
+        <svg class="metodo-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+        <h3>Visualizzazione</h3>
+        <p>Strumenti avanzati per mostrarti il progetto in modo chiaro e realistico, prima ancora di realizzarlo.</p>
+      </div>
+
+      <div class="metodo-card">
+        <svg class="metodo-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        <h3>Assistenza completa</h3>
+        <p>Ti accompagniamo in ogni fase, dalla progettazione alle pratiche, fino alla realizzazione.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-band-home reveal">
+  <div class="container">
+    <div class="cta-band-home-inner">
+      <div>
+        <h2 class="cta-band-home-title">Hai un'idea?<br><em>Costruiamola insieme.</em></h2>
+      </div>
+      <p class="cta-band-home-desc">Raccontaci il tuo progetto: ti aiutiamo a trasformarlo in uno spazio reale, funzionale e di valore.</p>
+      <a href="contatti.html" class="btn-cta">Prenota una consulenza →</a>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO MODAL -->
+<div class="video-modal" id="videoModal">
+  <div class="video-modal-inner">
+    <button class="video-modal-close" id="videoModalClose" aria-label="Chiudi">×</button>
+    <div style="display:flex;align-items:center;justify-content:center;height:100%;color:rgba(255,255,255,0.5);font-size:0.9rem;letter-spacing:0.1em;text-transform:uppercase;">
+      Video in arrivo
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer"><div class="container">
+  <div class="footer-grid">
+    <div class="footer-col-brand">
+      <p class="footer-brand">Lorenzo Tognolo · Geometra</p>
+      <p class="footer-desc">Servizi tecnici per edilizia, sicurezza, catasto, energia, perizie e amministrazione condominiale.</p>
+    </div>
+    <div class="footer-col-nav">
+      <div class="footer-nav-block">
+      <p class="footer-heading">Navigazione</p>
+      <nav class="footer-nav-inline">
+        <span class="footer-nav-row">
+          <a href="index.html">Home</a>
+          <span class="footer-sep">·</span>
+          <a href="servizi.html">Servizi</a>
+          <span class="footer-sep">·</span>
+          <a href="portafolio.html">Portafolio</a>
+        </span>
+        <span class="footer-nav-row">
+          <a href="profilo.html">Profilo</a>
+          <span class="footer-sep">·</span>
+          <a href="contatti.html">Contatti</a>
+          <span class="footer-sep">·</span>
+          <a href="privacy.html">Privacy</a>
+        </span>
+      </nav>
+      </div>
+    </div>
+    <div class="footer-col-contacts">
+      <p class="footer-heading">Contatti</p>
+      <div class="footer-contacts-top-row">
+        <p class="footer-contact-inline">
+          <span class="footer-contact-label">Telefono</span>
+          <span class="footer-contact-value">346.15.56.568</span>
+        </p>
+        <p class="footer-contact-inline">
+          <span class="footer-contact-label">Email</span>
+          <span class="footer-contact-value">info@geotognolo.it</span>
+        </p>
+      </div>
+      <p class="footer-contact-inline footer-contact-address">
+        <span class="footer-contact-label">Indirizzo</span>
+        <span class="footer-contact-value">Via G. Verdi 3, Loano</span>
+      </p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Lorenzo Tognolo – Geometra Libero Professionista. Tutti i diritti riservati.</p>
+  </div>
+</div></footer>
+
+<script src="script.js"></script>
+<script>
+(function(){
+  const modal = document.getElementById('videoModal');
+  const playBtn = document.getElementById('heroPlayBtn');
+  const imageWrap = document.getElementById('heroImageWrap');
+  const closeBtn = document.getElementById('videoModalClose');
+  
+  // Click en "Guarda un progetto" → abre modal
+  if (playBtn) {
+    playBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      modal.classList.add('open');
+    });
+  }
+  
+  // Click en la imagen del hero → también abre modal
+  if (imageWrap) {
+    imageWrap.addEventListener('click', (e) => {
+      if (e.target.closest('.btn-primary')) return;
+      modal.classList.add('open');
+    });
+  }
+  
+  if (closeBtn) closeBtn.addEventListener('click', () => modal.classList.remove('open'));
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) modal.classList.remove('open');
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') modal.classList.remove('open');
+  });
+})();
+</script>
+</body>
+</html>
