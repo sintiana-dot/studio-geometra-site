@@ -169,7 +169,7 @@ button { cursor: pointer; font-family: inherit; }
 
 .nav-mobile a:hover { color: var(--color-accent); }
 
-/* ── Page Hero (shared across servizi, portafolio, privacy) ── */
+/* ── Page Hero ── */
 .page-hero {
   padding-top: calc(var(--header-height) + 80px);
   padding-bottom: 40px;
@@ -195,6 +195,11 @@ button { cursor: pointer; font-family: inherit; }
   animation: fadeUp 0.6s 0.3s forwards;
 }
 
+.page-hero-title-lg {
+  font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+  line-height: 1.08;
+}
+
 .page-hero-desc {
   font-size: 1rem;
   color: var(--color-text-secondary);
@@ -215,119 +220,65 @@ button { cursor: pointer; font-family: inherit; }
 }
 
 /* ── Buttons ── */
-.btn-primary {
+.btn-primary, .btn-secondary, .btn-cta, .btn-submit {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  font-family: inherit;
+  font-weight: 500;
+  text-transform: uppercase;
+  border: none;
+  transition: background 0.3s, transform 0.2s, border-color 0.3s;
+}
+
+.btn-primary {
   padding: 14px 32px;
   background: var(--color-accent);
   color: var(--color-white);
   font-size: 0.82rem;
-  font-weight: 500;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
-  border: none;
   border-radius: 2px;
-  transition: background 0.3s, transform 0.2s;
 }
-
-.btn-primary:hover {
-  background: var(--color-accent-light);
-  transform: translateY(-1px);
-}
+.btn-primary:hover { background: var(--color-accent-light); transform: translateY(-1px); }
 
 .btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
   padding: 14px 32px;
   background: transparent;
   color: var(--color-text);
   font-size: 0.82rem;
-  font-weight: 500;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
   border: 1.5px solid var(--color-border);
   border-radius: 2px;
-  transition: border-color 0.3s, transform 0.2s;
 }
-
-.btn-secondary:hover {
-  border-color: var(--color-accent);
-  transform: translateY(-1px);
-}
+.btn-secondary:hover { border-color: var(--color-accent); transform: translateY(-1px); }
 
 .btn-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
   padding: 16px 36px;
   background: var(--color-accent);
   color: var(--color-white);
   font-size: 0.78rem;
-  font-weight: 500;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
-  border: none;
   border-radius: 50px;
-  transition: background 0.3s, transform 0.2s;
   white-space: nowrap;
 }
-
-.btn-cta:hover {
-  background: var(--color-accent-light);
-  transform: translateY(-1px);
-}
+.btn-cta:hover { background: var(--color-accent-light); transform: translateY(-1px); }
 
 .btn-submit {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
   padding: 16px 40px;
   background: var(--color-accent);
   color: var(--color-white);
   font-size: 0.82rem;
-  font-weight: 500;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
-  border: none;
   border-radius: 2px;
-  transition: background 0.3s, transform 0.2s;
 }
-
-.btn-submit:hover {
-  background: var(--color-accent-light);
-  transform: translateY(-1px);
-}
+.btn-submit:hover { background: var(--color-accent-light); transform: translateY(-1px); }
 
 /* ── CTA Band ── */
-.cta-band {
-  background: var(--color-bg-warm);
-  padding: 64px 0;
-}
+.cta-band { background: var(--color-bg-warm); padding: 64px 0; }
+.cta-band-inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+.cta-band-title { font-family: var(--font-display); font-size: clamp(1.6rem, 2.8vw, 2.2rem); line-height: 1.2; max-width: 600px; }
+.cta-band-subtitle { font-size: 0.9rem; color: var(--color-text-secondary); margin-top: 8px; }
 
-.cta-band-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-
-.cta-band-title {
-  font-family: var(--font-display);
-  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
-  line-height: 1.2;
-  max-width: 600px;
-}
-
-.cta-band-subtitle {
-  font-size: 0.9rem;
-  color: var(--color-text-secondary);
-  margin-top: 8px;
-}
-
-/* ── Shared label style ── */
 .profile-label {
   font-size: 0.72rem;
   letter-spacing: 0.2em;
@@ -337,176 +288,405 @@ button { cursor: pointer; font-family: inherit; }
   margin-bottom: 12px;
 }
 
-/* ── Footer (shared across all pages) ── */
+/* ══════════════════════════════════════════
+   PORTFOLIO GRID
+   ══════════════════════════════════════════ */
+
+.portfolio-section { padding: 20px 0 100px; }
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.portfolio-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #1A1A18;  /* sfondo scuro per il letterboxing */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.portfolio-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.portfolio-item.tall {
+  grid-row: span 2;
+}
+
+/* ── Media wrapper ── */
+.portfolio-media {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portfolio-item.tall .portfolio-media {
+  min-height: 580px;
+}
+
+/* ── Sfondo scuro per le card "contain" (le foto orizzontali avranno bande scure sopra/sotto) ── */
+.portfolio-item.fit-contain {
+  background: #1A1A18;
+}
+
+/* ── Placeholder grafico (per data-count="0") ── */
+.portfolio-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.portfolio-item.tall .portfolio-placeholder { min-height: 580px; }
+
+.portfolio-item:nth-child(1) .portfolio-placeholder { background: linear-gradient(145deg, #8B9D83, #6B7D63); }
+.portfolio-item:nth-child(2) .portfolio-placeholder { background: linear-gradient(145deg, #A09888, #887868); }
+.portfolio-item:nth-child(3) .portfolio-placeholder { background: linear-gradient(145deg, #7A8E8A, #5A6E6A); }
+.portfolio-item:nth-child(4) .portfolio-placeholder { background: linear-gradient(145deg, #9A8E7A, #7A6E5A); }
+.portfolio-item:nth-child(5) .portfolio-placeholder { background: linear-gradient(145deg, #88988B, #68786B); }
+.portfolio-item:nth-child(6) .portfolio-placeholder { background: linear-gradient(145deg, #8A8A80, #6A6A60); }
+.portfolio-item:nth-child(7) .portfolio-placeholder { background: linear-gradient(145deg, #7E9080, #5E7060); }
+.portfolio-item:nth-child(8) .portfolio-placeholder { background: linear-gradient(145deg, #98908A, #78706A); }
+.portfolio-item:nth-child(9) .portfolio-placeholder { background: linear-gradient(145deg, #869086, #667066); }
+
+/* ── Immagine singola ── */
+.portfolio-img {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Per card in modalità "contain", l'immagine singola si adatta intera */
+.portfolio-item.fit-contain .portfolio-img {
+  object-fit: contain;
+}
+
+.portfolio-item.tall .portfolio-img {
+  min-height: 580px;
+}
+
+.portfolio-item:hover .portfolio-img,
+.portfolio-item:hover .portfolio-placeholder {
+  transform: scale(1.04);
+}
+
+/* Disabilito zoom hover quando in modalità contain (rischia di tagliare l'immagine) */
+.portfolio-item.fit-contain:hover .portfolio-img,
+.portfolio-item.fit-contain:hover .carousel-slide img {
+  transform: scale(1.02);
+}
+
+/* ── Overlay con info progetto ── */
+.portfolio-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 30%, rgba(26, 26, 24, 0.78) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 28px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.portfolio-item:hover .portfolio-overlay {
+  opacity: 1;
+}
+
+.portfolio-overlay h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--color-white);
+  margin-bottom: 4px;
+}
+
+.portfolio-overlay .portfolio-tag {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+}
+
+.portfolio-overlay .portfolio-desc {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+/* ══════════════════════════════════════════
+   CAROUSEL (carosello immagini progetto)
+   ══════════════════════════════════════════ */
+
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  overflow: hidden;
+}
+
+.portfolio-item.tall .carousel {
+  min-height: 580px;
+}
+
+.carousel-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.carousel-slide {
+  flex: 1 0 auto;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1A1A18;  /* sfondo scuro per il letterboxing delle foto orizzontali */
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ── Mode CONTAIN: foto miste si vedono intere ── */
+.portfolio-item.fit-contain .carousel-slide img {
+  object-fit: contain;
+}
+
+.portfolio-item.tall .carousel-slide img {
+  min-height: 580px;
+}
+
+.portfolio-item:hover .carousel-slide img {
+  transform: scale(1.02);
+}
+
+/* ── Frecce navigazione ── */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.88);
+  color: #1A1A18;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 4;
+  opacity: 0;
+  transition: opacity 0.3s ease, background 0.2s ease;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+.carousel-arrow:hover {
+  background: var(--color-white);
+}
+
+.portfolio-item:hover .carousel-arrow {
+  opacity: 1;
+}
+
+.carousel-prev { left: 12px; }
+.carousel-next { right: 12px; }
+
+/* ── Contatore foto ── */
+.carousel-counter {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  color: var(--color-white);
+  background: rgba(0, 0, 0, 0.5);
+  padding: 4px 10px;
+  border-radius: 50px;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  z-index: 4;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.portfolio-item:hover .carousel-counter {
+  opacity: 1;
+}
+
+/* ── Puntini navigazione ── */
+.carousel-dots {
+  position: absolute;
+  bottom: 14px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  z-index: 4;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.portfolio-item:hover .carousel-dots {
+  opacity: 1;
+}
+
+.carousel-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.carousel-dot.active {
+  background: var(--color-white);
+  width: 20px;
+  border-radius: 3px;
+}
+
+.portfolio-item .carousel * {
+  pointer-events: auto;
+}
+
+/* ── Mobile: frecce e puntini sempre visibili ── */
+@media (max-width: 960px) {
+  .carousel-arrow,
+  .carousel-counter,
+  .carousel-dots {
+    opacity: 1;
+  }
+  .portfolio-overlay {
+    opacity: 1;
+    background: linear-gradient(180deg, transparent 50%, rgba(26, 26, 24, 0.85) 100%);
+  }
+}
+
+/* ══════════════════════════════════════════
+   FOOTER
+   ══════════════════════════════════════════ */
+
 .site-footer {
   background: var(--color-footer-bg);
   color: var(--color-footer-text);
-  padding: 0;
-}
-
-.site-footer .container {
-  padding-left: clamp(24px, 5vw, 80px);
-  padding-right: clamp(24px, 5vw, 80px);
-  max-width: 1280px;
-  margin: 0 auto;
+  padding: 60px 0 0;
 }
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 48px;
-  padding: 64px 0 48px;
-  align-items: start;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: 60px;
+  padding-bottom: 48px;
 }
 
-/* Col 1: brand */
-.footer-col-brand .footer-brand {
+.footer-brand {
   font-family: var(--font-body);
+  font-weight: 500;
   font-size: 0.82rem;
-  font-weight: 400;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--color-white);
-  margin-bottom: 12px;
-  opacity: 0.9;
+  margin-bottom: 16px;
 }
 
-.footer-col-brand .footer-desc {
-  font-size: 0.82rem;
+.footer-desc {
+  font-size: 0.85rem;
   line-height: 1.7;
   color: var(--color-footer-text);
-  opacity: 0.55;
-  max-width: 400px;
-}
-
-/* Col 2: nav */
-.footer-col-nav {
-  min-width: 190px;
-  display: flex;
-  justify-content: center;
-}
-
-.footer-nav-block {
-  display: inline-flex;
-  flex-direction: column;
-  gap: 0;
+  opacity: 0.8;
 }
 
 .footer-heading {
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-white);
-  opacity: 0.9;
   margin-bottom: 20px;
 }
 
-.footer-nav-inline {
+.footer-links {
+  list-style: none;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  align-items: center;
 }
 
-.footer-nav-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.footer-nav-inline a {
-  font-size: 0.85rem;
+.footer-links a {
+  font-size: 0.88rem;
   color: var(--color-footer-text);
-  opacity: 0.65;
-  transition: opacity 0.2s;
-  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.2s, color 0.2s;
 }
 
-.footer-nav-inline a:hover {
+.footer-links a:hover {
   opacity: 1;
+  color: var(--color-white);
 }
 
-.footer-sep {
-  opacity: 0.3;
-  font-size: 0.75rem;
-}
-
-/* Col 3: contatti */
-.footer-col-contacts {
-  min-width: 130px;
-}
-
-.footer-contacts-top-row {
-  display: flex;
-  gap: 40px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-}
-
-.footer-contact-inline {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.footer-contact-address {
-  margin-top: 0;
+.footer-contact-item {
+  font-size: 0.88rem;
+  margin-bottom: 8px;
+  opacity: 0.8;
 }
 
 .footer-contact-label {
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  display: inline-block;
+  width: 80px;
   color: var(--color-footer-text);
-  opacity: 0.45;
-  width: auto;
-  display: block;
-  margin-bottom: 0;
 }
 
-.footer-contact-value {
-  font-size: 0.88rem;
-  color: var(--color-footer-text);
-  opacity: 0.85;
-}
-
-/* Footer bottom */
 .footer-bottom {
   border-top: 1px solid rgba(255,255,255,0.1);
-  padding: 24px 0;
+  padding: 20px 0;
 }
 
 .footer-bottom p {
   font-size: 0.75rem;
-  color: var(--color-footer-text);
-  opacity: 0.4;
-  letter-spacing: 0.04em;
+  opacity: 0.5;
 }
 
-/* Footer responsive */
-@media (max-width: 860px) {
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-  }
-  .footer-col-brand {
-    grid-column: 1 / -1;
-  }
-}
+/* ══════════════════════════════════════════
+   ANIMATIONS
+   ══════════════════════════════════════════ */
 
-@media (max-width: 500px) {
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-  .footer-col-nav {
-    justify-content: flex-start;
-  }
-}
-
-/* ── Animations ── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
@@ -528,10 +708,21 @@ button { cursor: pointer; font-family: inherit; }
   transform: translateY(0);
 }
 
-/* ── Shared Responsive ── */
+/* ══════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════ */
+
 @media (max-width: 960px) {
   .nav-desktop { display: none; }
   .nav-toggle { display: flex; flex-direction: column; gap: 4px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+  .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+  .portfolio-item.tall { grid-row: span 1; }
+  .portfolio-item.tall .portfolio-media,
+  .portfolio-item.tall .portfolio-placeholder,
+  .portfolio-item.tall .portfolio-img,
+  .portfolio-item.tall .carousel,
+  .portfolio-item.tall .carousel-slide img { min-height: 280px; }
 }
 
 @media (max-width: 600px) {
@@ -540,4 +731,5 @@ button { cursor: pointer; font-family: inherit; }
     text-align: center;
     align-items: center;
   }
+  .portfolio-grid { grid-template-columns: 1fr; }
 }
