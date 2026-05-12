@@ -733,3 +733,48 @@ button { cursor: pointer; font-family: inherit; }
   }
   .portfolio-grid { grid-template-columns: 1fr; }
 }
+
+/* FIX PORTFOLIO CAROUSEL LAYOUT */
+.portfolio-item {
+  height: 280px;
+}
+
+.portfolio-item.tall {
+  height: 580px;
+}
+
+.portfolio-media,
+.carousel,
+.carousel-track,
+.carousel-slide {
+  height: 100%;
+  min-height: 0;
+}
+
+.portfolio-img,
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: cover;
+}
+
+.portfolio-item.fit-contain .portfolio-img,
+.portfolio-item.fit-contain .carousel-slide img {
+  object-fit: contain;
+}
+
+/* Each slide must occupy exactly one card width */
+.portfolio-item[data-count="2"] .carousel-slide { flex: 0 0 50%; }
+.portfolio-item[data-count="3"] .carousel-slide { flex: 0 0 33.333333%; }
+.portfolio-item[data-count="4"] .carousel-slide { flex: 0 0 25%; }
+.portfolio-item[data-count="5"] .carousel-slide { flex: 0 0 20%; }
+.portfolio-item[data-count="6"] .carousel-slide { flex: 0 0 16.666667%; }
+.portfolio-item[data-count="7"] .carousel-slide { flex: 0 0 14.285714%; }
+
+@media (max-width: 960px) {
+  .portfolio-item,
+  .portfolio-item.tall {
+    height: 360px;
+  }
+}
