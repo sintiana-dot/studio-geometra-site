@@ -300,10 +300,11 @@
   .cta-band-home-inner { grid-template-columns: 1fr; text-align: center; gap: 24px; }
   .cta-band-home-inner .btn-cta { justify-self: center; }
 }
+   
 @media (max-width: 600px) {
   .hero {
     padding-top: calc(var(--header-height) + 12px);
-    padding-bottom: 28px;
+    padding-bottom: 10px;
   }
 
   .hero-banner {
@@ -312,41 +313,51 @@
 
   .hero-image-wrap {
     aspect-ratio: auto;
-    min-height: 620px;
+    min-height: 540px;
+  }
+
+  .hero-image {
+    transform: scale(1.08);
+    object-position: center center;
   }
 
   .hero-overlay {
     width: 100%;
-    padding: 36px 26px 32px;
+    padding: 34px 26px 24px;
     justify-content: flex-start;
     background: linear-gradient(
       180deg,
-      rgba(250,250,245,0.96) 0%,
-      rgba(250,250,245,0.82) 55%,
-      rgba(250,250,245,0.35) 100%
+      rgba(250,250,245,0.78) 0%,
+      rgba(250,250,245,0.58) 55%,
+      rgba(250,250,245,0.20) 100%
     );
   }
 
   .hero-label {
-    font-size: 0.62rem;
-    margin-bottom: 18px;
+    font-size: 0.6rem;
+    margin-bottom: 16px;
   }
 
   .hero-title {
-    font-size: clamp(2.15rem, 10vw, 3rem);
-    line-height: 1.05;
-    margin-bottom: 20px;
+    font-size: clamp(1.8rem, 8.4vw, 2.45rem);
+    line-height: 1.04;
+    margin-bottom: 16px;
+  }
+
+  .hero-rule {
+    margin-bottom: 18px;
   }
 
   .hero-subtitle {
-    font-size: 0.95rem;
-    line-height: 1.55;
+    font-size: 0.92rem;
+    line-height: 1.5;
     max-width: 100%;
-    margin-bottom: 24px;
+    margin-bottom: 22px;
   }
 
   .hero-ctas {
     width: 100%;
+    gap: 12px;
   }
 
   .hero-ctas .btn-primary,
@@ -357,8 +368,12 @@
     padding-left: 18px;
     padding-right: 18px;
   }
-}
 
+  .steps-section {
+    padding-top: 22px;
+  }
+}
+   
 /* ══════════════════════════════════════════
    Video modal
    ══════════════════════════════════════════ */
