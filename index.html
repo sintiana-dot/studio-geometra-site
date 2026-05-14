@@ -301,8 +301,62 @@
   .cta-band-home-inner .btn-cta { justify-self: center; }
 }
 @media (max-width: 600px) {
-  .hero { padding-top: calc(var(--header-height) + 16px); }
-  .hero-image-wrap { aspect-ratio: 4 / 3; }
+  .hero {
+    padding-top: calc(var(--header-height) + 12px);
+    padding-bottom: 28px;
+  }
+
+  .hero-banner {
+    padding: 0 18px;
+  }
+
+  .hero-image-wrap {
+    aspect-ratio: auto;
+    min-height: 620px;
+  }
+
+  .hero-overlay {
+    width: 100%;
+    padding: 36px 26px 32px;
+    justify-content: flex-start;
+    background: linear-gradient(
+      180deg,
+      rgba(250,250,245,0.96) 0%,
+      rgba(250,250,245,0.82) 55%,
+      rgba(250,250,245,0.35) 100%
+    );
+  }
+
+  .hero-label {
+    font-size: 0.62rem;
+    margin-bottom: 18px;
+  }
+
+  .hero-title {
+    font-size: clamp(2.15rem, 10vw, 3rem);
+    line-height: 1.05;
+    margin-bottom: 20px;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    max-width: 100%;
+    margin-bottom: 24px;
+  }
+
+  .hero-ctas {
+    width: 100%;
+  }
+
+  .hero-ctas .btn-primary,
+  .hero-ctas .btn-secondary {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding-left: 18px;
+    padding-right: 18px;
+  }
 }
 
 /* ══════════════════════════════════════════
