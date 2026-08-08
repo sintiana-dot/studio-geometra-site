@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contatti – Lorenzo Tognolo, Geometra</title>
 <meta name="description" content="Contatta lo studio tecnico del Geometra Lorenzo Tognolo a Loano per pratiche edilizie, sicurezza, catasto, perizie e amministrazione condominiale.">
+<link rel="canonical" href="https://www.geotognolo.it/contatti.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ContactPage","@id":"https://www.geotognolo.it/contatti.html#webpage","url":"https://www.geotognolo.it/contatti.html","name":"Contatti | Studio tecnico geometra Tognolo","isPartOf":{"@id":"https://www.geotognolo.it/#website"},"about":{"@id":"https://www.geotognolo.it/#business"},"inLanguage":"it-IT"}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap" rel="stylesheet">
@@ -33,6 +35,7 @@
 .form-group textarea{min-height:140px;resize:vertical}
 .form-privacy{font-size:.78rem;color:var(--color-text-secondary);line-height:1.6;margin-bottom:24px}
 .form-privacy a{color:var(--color-accent);text-decoration:underline}
+.form-honeypot{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
 .map-frame{display:block;width:100%;height:320px;border:0}
 @media(max-width:960px){.contact-grid{grid-template-columns:1fr;gap:48px}}
 @media(max-width:600px){.form-row{grid-template-columns:1fr}}
@@ -42,6 +45,8 @@
 
 <header class="site-header" id="header"><div class="header-inner"><a href="index.html" class="site-logo">Lorenzo Tognolo · Geometra</a><nav class="nav-desktop"><a href="index.html">Home</a><a href="servizi.html">Servizi</a><a href="portafolio.html">Portafolio</a><a href="profilo.html">Profilo</a><a href="contatti.html" class="active">Contatti</a><a href="privacy.html">Privacy</a></nav><button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button></div></header>
 <nav class="nav-mobile" id="navMobile"><a href="index.html">Home</a><a href="servizi.html">Servizi</a><a href="portafolio.html">Portafolio</a><a href="profilo.html">Profilo</a><a href="contatti.html">Contatti</a><a href="privacy.html">Privacy</a></nav>
+
+<main id="main-content">
 
 <section class="page-hero"><div class="container">
   <h1 class="page-hero-title">Hai bisogno di assistenza tecnica? Scrivimi.</h1>
@@ -67,7 +72,8 @@
   </div>
   <form class="contact-form" action="https://formspree.io/f/xeajoyvb" method="post" accept-charset="UTF-8">
     <input type="hidden" name="_subject" value="Nuova richiesta dal sito geotognolo.it">
-    <div class="form-row"><div class="form-group"><label>Nominativo <span class="required">*</span></label><input type="text" name="nome" required></div><div class="form-group"><label>Telefono <span class="required">*</span></label><input type="tel" name="telefono" required></div></div>
+    <div class="form-honeypot" aria-hidden="true"><label for="website">Sito web</label><input id="website" type="text" name="website" tabindex="-1" autocomplete="off"></div>
+    <div class="form-row"><div class="form-group"><label for="nome">Nominativo <span class="required">*</span></label><input id="nome" type="text" name="nome" required></div><div class="form-group"><label for="telefono">Telefono</label><input id="telefono" type="tel" name="telefono" autocomplete="tel"></div></div>
     <div class="form-row"><div class="form-group"><label>Indirizzo Email <span class="required">*</span></label><input type="email" name="email" required></div><div class="form-group"><label>Comune</label><input type="text" name="comune"></div></div>
     <div class="form-row"><div class="form-group"><label>Servizio richiesto</label><select name="servizio"><option value="">Seleziona un servizio</option><option value="edilizia">Progettazione & Edilizia</option><option value="sicurezza">Sicurezza Cantieri</option><option value="catasto">Catasto & Pratiche Tecniche</option><option value="energetica">Certificazione Energetica</option><option value="perizie">Perizie & Valutazioni</option><option value="condominiale">Amministrazione Condominiale</option><option value="altro">Altro</option></select></div><div class="form-group"><label>Come ci hai trovato?</label><select name="fonte"><option value="">Seleziona</option><option value="web">Ricerca web</option><option value="passaparola">Passaparola</option><option value="social">Social media</option><option value="altro">Altro</option></select></div></div>
     <div class="form-row"><div class="form-group full"><label>Messaggio <span class="required">*</span></label><textarea name="messaggio" required placeholder="Descrivi brevemente la tua richiesta..."></textarea></div></div>
@@ -77,6 +83,8 @@
 </div></div></section>
 
 <section class="map-section"><iframe class="map-frame" src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d771.1302894358195!2d8.250788428836408!3d44.12172802558326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x12d2f7791e70e5e9%3A0xd549acdc592ec50c!2sStudio%20tecnico%20geometra%20Tognolo%2C%20Via%20Giuseppe%20Verdi%2C%20n%C2%B03%2C%2017025%20Loano%20SV!3m2!1d44.121595199999994!2d8.2510085!5e1!3m2!1ses!2sit!4v1784891603062!5m2!1ses!2sit" title="Mappa dello Studio Tecnico Geometra Tognolo a Loano" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></section>
+
+</main>
 
 <footer class="site-footer"><div class="container">
   <div class="footer-grid">
@@ -131,4 +139,3 @@
 <script src="script.js"></script>
 </body>
 </html>
-
