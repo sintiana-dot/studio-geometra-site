@@ -84,13 +84,13 @@ if (reveals.length) {
 
     // ── Caso 1: una sola foto → immagine statica ──
     if (count === 1) {
-      const title = item.querySelector('h3')?.textContent || 'Progetto';
+      const title = item.querySelector('h2, h3')?.textContent || 'Progetto';
       media.innerHTML = `<img src="img/portfolio/${folder}/01.jpg" alt="${title}" class="portfolio-img" loading="lazy">`;
       return;
     }
 
     // ── Caso 2+: carosello ──
-    const title = item.querySelector('h3')?.textContent || 'Progetto';
+    const title = item.querySelector('h2, h3')?.textContent || 'Progetto';
     let slides = '';
     let dots = '';
     for (let i = 1; i <= count; i++) {
