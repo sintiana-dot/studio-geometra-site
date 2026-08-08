@@ -13,6 +13,8 @@
   --color-text-secondary: #5A5A52;
   --color-accent: #3D5A44;
   --color-accent-light: #4A6B52;
+  --color-warm-accent: #7A5A24;
+  --color-warm-accent-dark: #684A1D;
   --color-border: #C8C4B8;
   --color-card-border: #8FA38A;
   --color-footer-bg: #2A3730;
@@ -416,6 +418,7 @@ button { cursor: pointer; font-family: inherit; }
   opacity: 1;
 }
 
+.portfolio-overlay h2,
 .portfolio-overlay h3 {
   font-family: var(--font-display);
   font-size: 1.3rem;
