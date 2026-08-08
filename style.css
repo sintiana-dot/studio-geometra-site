@@ -634,7 +634,7 @@ button { cursor: pointer; font-family: inherit; }
   font-size: 0.85rem;
   line-height: 1.7;
   color: var(--color-footer-text);
-  opacity: 0.8;
+  opacity: 1;
 }
 
 .footer-heading {
@@ -656,7 +656,7 @@ button { cursor: pointer; font-family: inherit; }
 .footer-links a {
   font-size: 0.88rem;
   color: var(--color-footer-text);
-  opacity: 0.8;
+  opacity: 1;
   transition: opacity 0.2s, color 0.2s;
 }
 
@@ -668,7 +668,7 @@ button { cursor: pointer; font-family: inherit; }
 .footer-contact-item {
   font-size: 0.88rem;
   margin-bottom: 8px;
-  opacity: 0.8;
+  opacity: 1;
 }
 
 .footer-contact-label {
@@ -684,7 +684,7 @@ button { cursor: pointer; font-family: inherit; }
 
 .footer-bottom p {
   font-size: 0.75rem;
-  opacity: 0.5;
+  opacity: 0.8;
 }
 
 /* ══════════════════════════════════════════
