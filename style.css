@@ -794,7 +794,7 @@ button { cursor: pointer; font-family: inherit; }
 
 /* Long-form service content */
 .service-longform > .service-lead {
-  font-size: clamp(1rem, 1.35vw, 1.16rem);
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
   line-height: 1.72;
   margin-bottom: 40px;
 }
@@ -816,10 +816,17 @@ button { cursor: pointer; font-family: inherit; }
 .service-process-list li { counter-increment: service-process; position: relative; padding: 18px 20px 18px 58px; background: var(--color-bg-warm); border-left: 2px solid var(--color-accent); line-height: 1.7; }
 .service-process-list li::before { content: counter(service-process, decimal-leading-zero); position: absolute; left: 18px; top: 20px; color: var(--color-accent); font-size: .72rem; letter-spacing: .08em; font-weight: 600; }
 .service-copy-section a { color: var(--color-accent); text-decoration: underline; text-underline-offset: 3px; }
+.service-anchor-nav { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 4px; padding: 20px 0 4px; border-top: 1px solid var(--color-border); }
+.service-anchor-label { flex-basis: 100%; color: var(--color-text-secondary); font-size: .7rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 2px; }
+.service-anchor-nav a { display: inline-flex; align-items: center; min-height: 38px; padding: 8px 13px; border: 1px solid var(--color-border); color: var(--color-text); background: var(--color-white); font-size: .78rem; font-weight: 500; text-decoration: none; transition: border-color .2s, color .2s, background .2s; }
+.service-anchor-nav a:hover, .service-anchor-nav a:focus-visible { border-color: var(--color-accent); color: var(--color-accent); background: var(--color-bg-warm); }
+.service-copy-section h3[id] { scroll-margin-top: calc(var(--header-height) + 24px); }
 .service-coverage { padding-top: 18px; border-top: 1px solid var(--color-border); }
 @media (max-width: 760px) {
   .service-copy-section { padding-top: 30px; }
-  .service-longform > .service-lead { font-size: 1rem; line-height: 1.68; margin-bottom: 34px; }
+  .service-longform > .service-lead { font-size: 1.04rem; line-height: 1.68; margin-bottom: 34px; }
+  .service-anchor-nav { gap: 8px; margin-top: 24px; }
+  .service-anchor-nav a { min-height: 36px; padding: 7px 11px; font-size: .75rem; }
   .service-copy-section h3 { margin-top: 32px; }
   .service-copy-section h3 + p { margin-bottom: 28px; }
   .service-process-list li { padding-left: 52px; }
