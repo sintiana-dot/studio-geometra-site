@@ -790,3 +790,23 @@ button { cursor: pointer; font-family: inherit; }
   .service-landing { padding-bottom:60px; }
   .service-steps-section, .service-faq-section { padding:56px 0; }
 }
+
+
+/* Long-form service content */
+.service-longform > .service-lead { margin-bottom: 34px; }
+.service-copy-section { padding: 38px 0 8px; border-top: 1px solid var(--color-border); }
+.service-copy-section:first-of-type { margin-top: 34px; }
+.service-copy-section h2 { margin-bottom: 22px; }
+.service-copy-section h3 { font-family: var(--font-display); font-size: clamp(1.3rem, 2vw, 1.65rem); font-weight: 400; line-height: 1.3; margin: 30px 0 12px; }
+.service-copy-section p { line-height: 1.78; margin-bottom: 16px; }
+.service-list-detailed { margin: 20px 0 8px; }
+.service-list-detailed li { line-height: 1.65; }
+.service-process-list { list-style: none; counter-reset: service-process; display: grid; gap: 14px; margin-top: 24px; }
+.service-process-list li { counter-increment: service-process; position: relative; padding: 18px 20px 18px 58px; background: var(--color-bg-warm); border-left: 2px solid var(--color-accent); line-height: 1.7; }
+.service-process-list li::before { content: counter(service-process, decimal-leading-zero); position: absolute; left: 18px; top: 20px; color: var(--color-accent); font-size: .72rem; letter-spacing: .08em; font-weight: 600; }
+.service-copy-section a { color: var(--color-accent); text-decoration: underline; text-underline-offset: 3px; }
+.service-coverage { padding-top: 18px; border-top: 1px solid var(--color-border); }
+@media (max-width: 760px) {
+  .service-copy-section { padding-top: 30px; }
+  .service-process-list li { padding-left: 52px; }
+}
